@@ -1,0 +1,121 @@
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="../../../assets/logo optimum.jpg" style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Comer sin complicaciones</h4>
+                </div>
+
+                <form>
+                  <p>Registro</p>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="userName"
+                    id="userName-input"
+                    class="form-control"
+                    [(ngModel)]="user.userName"
+                    name="userName"
+                    placeholder="Alias"
+                    required="required"
+                    />
+                    <label class="form-label" for="userName-input">Nombre de Usuario</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="nombres"
+                    id="nombres-input"
+                    class="form-control"
+                    [(ngModel)]="user.firstNames"
+                    name="nombres"
+                    placeholder="Nombre/s"
+                    required="required"
+                    />
+                    <label class="form-label" for="nombres-input">Nombre/s</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="apellido"
+                    id="apellido-input"
+                    class="form-control"
+                    [(ngModel)]="user.lastName"
+                    name="apellido"
+                    placeholder="Apellido"
+                    required="required"
+                    />
+                    <label class="form-label" for="apellido-input">Apellido</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="email"
+                    id="email-input"
+                    class="form-control"
+                    [(ngModel)]="user.email"
+                    name="email"
+                    placeholder="Email"
+                    required="required"
+                    />
+                    <label class="form-label" for="email-input">Email</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="password"
+                    id="password-input"
+                    class="form-control"
+                    [(ngModel)]="user.passwordHash"
+                    name="password"
+                    placeholder="Password"
+                    required="required"
+                    />
+
+                    <label class="form-label" for="password-input">Password</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="password"
+                    id="password-input"
+                    class="form-control"
+                    [(ngModel)]="passwordRepeated"
+                    name="password"
+                    placeholder="Password"
+                    required="required"
+                    />
+
+                    <label class="form-label" for="password-input">Confirmar Password</label>
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button
+                      class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                      type="submit"
+                      (click)="register()"
+                    >
+                    Registrarse
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+
+              <app-front-page></app-front-page>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

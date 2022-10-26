@@ -1,0 +1,29 @@
+.cartilla-item{
+  border: 1px solid #ccc;
+  margin: 20px;;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: grey 0px 0px 10px;
+}
+
+.btn-add-align{
+  text-align: right;
+  margin-right: -10px;
+}
+
+.btn-add{
+  width: 66%;
+}
+
+.input-item-quantity{
+  max-width: 200px;;
+}
+
+.input-section{
+  justify-content: right;
+}
+
+.item-already-ordered{
+  color: gray;
+  font-size: small;
+}

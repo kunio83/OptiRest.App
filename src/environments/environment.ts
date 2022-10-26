@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // urlApiBase: 'https://optirestapi-v1.azurewebsites.net/api/'
+   urlApiBase: 'https://localhost:7146/api/'  //local
 };
 
 /*
