@@ -40,12 +40,20 @@ export class CartillaMenuComponent implements OnInit {
   }
 
   filterByCategory(event: any) {
-    let categoryName: string = event.target.text;
+    let categoryName: string = event.target.innerHTML;
+    console.log(event.target.innerHTML);
 
     //clean all categories selected
+    /*
     for (let index = 0; index < event.target.parentElement.parentElement.children.length; index++) {
       event.target.parentElement.parentElement.children[index].children[0].classList.remove('category-selected');
-    }
+    }*/
+
+    document.querySelectorAll('span.sc-bxivhb').forEach(function (elem)
+    {
+      elem.classList.remove('category-selected');
+    });
+   
 
     event.target.classList.add('category-selected');
 
