@@ -24,7 +24,6 @@ export class MesaService {
 
   openMesa(tableService: TableService): Observable<TableService> {
     let result = this.http.post<TableService>(environment.urlApiBase + 'tableservice', tableService);
-    //this._currentResult = result
 
     return result;
   }

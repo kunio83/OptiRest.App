@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 import { Table } from 'src/app/models/table';
+import { CartillaService } from 'src/app/services/cartilla.service';
 import { NgbdModalContent } from './cartilla-mozo-modal-content';
 
 @Component({
@@ -17,7 +18,8 @@ export class CartillaComponent implements OnInit {
 
 
   constructor(
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private cartillaService: CartillaService
   ) {
     }
 
@@ -26,17 +28,21 @@ export class CartillaComponent implements OnInit {
 
     this.image = mesaData.tenant.businessConfig.logo;
 
-    this.selectedTab = 'carta';
+
+    this.cartillaService.getCurrentTab.subscribe(tab => {
+      this.selectedTab = tab;
+    });
+    this.cartillaService.setCurrentTab = 'carta';
   }
 
   openLista(): void{
     this.selectedTab = 'lista';
-    console.log('openLista');
+    this.cartillaService.setCurrentTab = 'lista';
   }
 
   openCarta(): void{
-    this.selectedTab = 'carta';
-    console.log('openCarta');
+    this.cartillaService.setCurrentTab = 'carta';
+    //this.selectedTab = 'carta';
   }
 
   showMozoModal(): void{

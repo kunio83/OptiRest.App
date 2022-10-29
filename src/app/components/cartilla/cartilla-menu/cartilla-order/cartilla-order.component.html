@@ -1,0 +1,11 @@
+<div class="cartilla-order-container" [hidden]="!showCartillaOrder">
+  <div class="row">
+    <div class="col-10">
+      <p>Se agregaron {{ itemsQuantity }} items a su pedido.</p>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-secondary" (click)="goToOrder()">Ver Pedido</button>
+    </div>
+  </div>
+
+</div>

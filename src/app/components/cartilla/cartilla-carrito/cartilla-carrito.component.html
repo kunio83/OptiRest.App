@@ -4,14 +4,17 @@
   <ul class="list-group">
     <li *ngFor="let item of itemsToOrder" class="list-group-item clearfix">
       <div class="row">
-        <div class="col-6">
+        <div class="col-5">
           <span>{{ item.item.title }}</span>
         </div>
-        <div class="col-5">
-          <span>{{item.quantity}} X {{ item.item.price | currency}} subtotal: {{(item.quantity*item.item.price) | currency}}</span>
+        <div class="col-2">
+          <span>Estado</span>
         </div>
-        <div class="col-1">
-          <span><button type="button" class="btn btn-danger" (click)="removeItemFromOrder(item)">Eliminar</button></span>
+        <div class="col-3">
+          <span>{{item.quantity}} X {{ item.item.price | currency}}</span>
+        </div>
+        <div class="col-2">
+          <span><button type="button" class="btn btn-danger" (click)="removeItemFromOrder(item)">Cancelar</button></span>
         </div>
       </div>
     </li>
@@ -21,7 +24,7 @@
 <br>
   <div class="row">
     <div class="col-6">
-      <span>Total: ${{ totalPrice }}</span>
+      <!-- <span>Total: ${{ totalPrice }}</span> -->
     </div>
     <div class="col-5"></div>
     <div class="col-1">

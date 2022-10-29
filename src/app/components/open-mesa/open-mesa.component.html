@@ -49,30 +49,22 @@
         group_add
       </span>
       <h4>¿Cuantas personas van a ser?</h4>
-  
 
+      <form (submit)="onSubmit()">
+        <div style="margin-bottom:4rem ;">
+          <div class="d-flex justify-content-center">
+            <input type="number" id="input-adultos" class="form-control" style="width: 20%;"
+              [(ngModel)]="inputComensales" [ngModelOptions]="{standalone: true}">
+            </div>
+        </div>
+        <div class="d-grid gap-2 text-center">
+          <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 border-0" type="submit">
+            Comencemos
+          </button>
+        </div>
 
-        <form (submit)="onSubmit()">
-          <div style="margin-bottom:4rem ;">
-            <div class="d-flex justify-content-center">
-              <input type="number" id="input-adultos" class="form-control" style="width: 20%;"
-                [(ngModel)]="inputComensales" [ngModelOptions]="{standalone: true}">
-              </div>  
-          </div>  
-          <div class="d-grid gap-2 text-center">
-            <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3 border-0" type="submit">
-              Comencemos
-            </button>
-          </div>
-
-        </form>
-    </div>
-
-
-
-
-
-
+      </form>
+  </div>
 </div>
 
 

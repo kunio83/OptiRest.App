@@ -1,0 +1,41 @@
+<app-headeropti></app-headeropti>
+<section style="background-color: #eee;">
+  <div class="container" style="border: 1px solid gray; text-align: center;">
+
+
+    <div class="row">
+      <div>
+        <button
+          class="btn btn-secondary"
+          type="submit"
+          [routerLink]="['/']" routerLinkActive="router-link-active"
+        >
+        Cancelar
+        </button>
+        <button
+              class="btn btn-secondary btn-block"
+              (click)="skipScan()"
+            >
+        Saltear
+        </button>
+      </div>
+    </div>
+    <div class="row"><h3>Escanear código QR de la mesa</h3></div>
+    <div class="row">
+      <div class="col-10">
+        <div>
+
+        <!-- QR ACA -->
+        <div class="qr-reader">
+          <zxing-scanner
+            [formats]="allowedFormats"
+            (scanSuccess)="onScanSuccess($event)"
+          >
+        </zxing-scanner>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

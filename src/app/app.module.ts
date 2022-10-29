@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
-import { HomeComponent } from './components/home/home.component';
+import { QRReadingComponent } from './components/home/qr-reading.component';
 import { RegisterComponent } from './components/login/register/register.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { FrontPageComponent } from './components/common/front-page/front-page.component';
@@ -22,12 +22,14 @@ import { CartillaMenuComponent } from './components/cartilla/cartilla-menu/carti
 import { ItemComponent } from './components/cartilla/cartilla-menu/item/item.component';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { CartillaService } from './services/cartilla.service';
-import { HeaderoptiComponent } from './components/common/headeropti/headeropti.component';
+import { HeaderComponent } from './components/common/headeropti/header.component';
+import { CanActivateViaAuthGuardService } from './services/can-activate-via-guard.service';
+import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cartilla-order/cartilla-order.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    QRReadingComponent,
     LoginComponent,
     RegisterComponent,
     FrontPageComponent,
@@ -36,7 +38,8 @@ import { HeaderoptiComponent } from './components/common/headeropti/headeropti.c
     CartillaCarritoComponent,
     CartillaMenuComponent,
     ItemComponent,
-    HeaderoptiComponent
+    HeaderComponent,
+    CartillaOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { HeaderoptiComponent } from './components/common/headeropti/headeropti.c
     ToastrModule.forRoot(),
     NgxBootstrapIconsModule.pick(allIcons)
   ],
-  providers: [CookieService, MesaService, CartillaService],
+  providers: [CookieService, MesaService, CartillaService, CanActivateViaAuthGuardService],
   bootstrap: [AppComponent],
   entryComponents: []
 })

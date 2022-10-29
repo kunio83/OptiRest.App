@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from "src/app/models/user";
 import { FrontPageComponent } from "../../common/front-page/front-page.component";
 import { ToastrService } from "ngx-toastr";
+import { LoginService } from "src/app/services/login.service";
 
 @Component({
   selector: "app-login",
@@ -17,7 +18,8 @@ export class LoginComponent {
   constructor(
     public userService: UsersService,
     public router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private loginService: LoginService
     ) {}
 
   login() {
@@ -37,9 +39,9 @@ export class LoginComponent {
 
           if (user.passwordHash == userInput.password)
           {
-            //this.userService.setToken(data.token);
+            this.loginService.setUserLogged(true);
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/qrreading');
           }
           else
           {
