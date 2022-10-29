@@ -1,18 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">Categorias:</a>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto" >
-
-        <li class="nav-item active category-link" *ngFor="let category of itemCategories" (click)="filterByCategory($event)">
-          <a class="nav-link" >{{category?.name}}</a>
-        </li>
-
-    </ul>
+<div data-qa="product-category-list" class="sc-d3d292bd-0 menucat">
+  <div class="sc-d3d292bd-1 guXzfb" *ngFor="let category of itemCategories" (click)="filterByCategory($event)">
+    <a class="sc-d3d292bd-2 xcYKY">
+      <span color="graya100" data-testid="typography" class="sc-bxivhb fyzoZN">{{category?.name}}</span>
+    </a>
   </div>
-</nav>
-
-<div *ngFor="let item of itemsFiltered">
-  <app-item [item]="item"></app-item>
 </div>
+
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let item of itemsFiltered">
+    <app-item [item]="item"></app-item>
+  </li>
+</ul>

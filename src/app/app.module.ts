@@ -22,6 +22,7 @@ import { CartillaMenuComponent } from './components/cartilla/cartilla-menu/carti
 import { ItemComponent } from './components/cartilla/cartilla-menu/item/item.component';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { CartillaService } from './services/cartilla.service';
+import { HeaderoptiComponent } from './components/common/headeropti/headeropti.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartillaService } from './services/cartilla.service';
     CartillaCarritoComponent,
     CartillaMenuComponent,
     ItemComponent,
+    HeaderoptiComponent
   ],
   imports: [
     BrowserModule,

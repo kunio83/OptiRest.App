@@ -1,16 +1,19 @@
-<section class="h-100 gradient-form" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-xl-10">
-        <div class="row">
-          <!-- <div class="col-3"><img class="logo-cartilla" [src]="'data:image/jpg;base64,' + image" /></div> -->
-          <div class="col-4 center"><button type="button" class="btn btn-primary btn-cartilla" [ngClass]="{'btn-selected': selectedTab == 'lista'}" (click)="openLista()">Lista</button></div>
-          <div class="col-4 center"><button type="button" class="btn btn-primary btn-cartilla" [ngClass]="{'btn-selected': selectedTab == 'carta'}" (click)="openCarta()">Carta</button></div>
-          <div class="col-4 center"><button type="button" class="btn btn-primary btn-cartilla" (click)="showMozoModal()">Mozo</button></div>
-        </div>
-      </div>
+<app-headeropti></app-headeropti>
+
+  <div class="contbuttons">
+    <div>
+      <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'lista'}"
+        (click)="openLista()">Mi Pedido</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'carta'}"
+        (click)="openCarta()">Carta</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="showMozoModal()">Mozo</button>
     </div>
   </div>
-  <app-cartilla-menu [hidden]="selectedTab != 'carta'"></app-cartilla-menu>
-  <app-cartilla-carrito [hidden]="selectedTab != 'lista'"></app-cartilla-carrito>
-</section>
+
+
+<app-cartilla-menu [hidden]="selectedTab != 'carta'"></app-cartilla-menu>
+<app-cartilla-carrito [hidden]="selectedTab != 'lista'"></app-cartilla-carrito>

@@ -1,47 +1,84 @@
-<div class="cartilla-item">
-
-    <div class="row">
-      <div class="col-7">
-        <h2>{{ item.title }}</h2>
+<div>
+  <div class="cont_tit_cant">
+    <div class="cartilla-item__name">
+      {{ item.title }}
+    </div>
+      <div class="btns">
+          <button type="button" class="btn btn-number" data-type="minus" (click)="decreaseItemQuantity()">
+            <i-bs name="dash-square" class="item-icon"></i-bs>
+          </button>
+        {{ inputItemQuantity }}
+          <button type="button" class="btn btn-number" data-type="plus" (click)="increaseItemQuantity()">
+            <i-bs name="plus-square"  class="item-icon"></i-bs>
+          </button>
       </div>
-      <div class="col-5">
-        <div class="input-group input-section">
-          <span class="input-group-btn">
-              <button type="button" class="btn btn-number"  data-type="minus" (click)="decreaseItemQuantity()">
-                <i-bs name="dash-square" height="40" width="40" class="item-icon"></i-bs>
-              </button>
-          </span>
-          <input type="text" class="form-control input-number input-item-quantity" value="1" min="1" max="100" [(ngModel)]="inputItemQuantity" readonly>
-          <span class="input-group-btn">
-              <button type="button" class="btn btn-number" data-type="plus" (click)="increaseItemQuantity()">
-                <i-bs name="plus-square" height="40" width="40" class="item-icon"></i-bs>
-              </button>
-          </span>
-        </div>
+  </div>
+  
+  <div class="cont_tit_cant">
+    <div class="cartilla-item__summary">
+      {{ item.summary }}
+    </div>
 
-      </div>
+    <div>
+      <input type="button" class="btn btn-danger btn-sm btnpedir" value="Pedir" (click)="addItemToCart()"/>
+    </div>
+  </div>  
+  <p class="cartilla-item__price">{{item.price | currency}}</p>
 
-      <div class="row">
-        <div class="col-8">
-          <p>{{ item.summary }}</p>
-        </div>
 
-        <div class="col-4">
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-8">
-          <p>{{ item.price | currency }}</p>
-          <p class="item-already-ordered" [hidden]="!hasThisItem">Ya agregaste {{ totalItemQuantity }} a tu pedido</p>
-        </div>
-        <div class="col-4">
-          <div class="btn-add-align">
-            <input type="button" class="btn btn-primary btn-add" value="Agregar" (click)="addItemToCart()"/>
-          </div>
-        </div>
+
+
+
+
+
+
+
+<!--
+
+  <div class="row">
+    <div class="col-7">
+      <h2>{{ item.title }}</h2>
+    </div>
+    <div class="col-5">
+      <div class="input-group input-section">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-number" data-type="minus" (click)="decreaseItemQuantity()">
+            <i-bs name="dash-square" height="40" width="40" class="item-icon"></i-bs>
+          </button>
+        </span>
+        <input type="text" class="form-control input-number input-item-quantity" value="1" min="1" max="100"
+          [(ngModel)]="inputItemQuantity" readonly>
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-number" data-type="plus" (click)="increaseItemQuantity()">
+            <i-bs name="plus-square" height="40" width="40" class="item-icon"></i-bs>
+          </button>
+        </span>
       </div>
 
     </div>
+
+    <div class="row">
+      <div class="col-8">
+        <p>{{ item.summary }}</p>
+      </div>
+
+      <div class="col-4">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-8">
+        <p>{{ item.price | currency }}</p>
+        <p class="item-already-ordered" [hidden]="!hasThisItem">Ya agregaste {{ totalItemQuantity }} a tu pedido</p>
+      </div>
+      <div class="col-4">
+        <div class="btn-add-align">
+          <input type="button" class="btn btn-primary btn-add" value="Agregar" (click)="addItemToCart()" />
+        </div>
+      </div>
+    </div>
+
+  </div>-->
 
 </div>
