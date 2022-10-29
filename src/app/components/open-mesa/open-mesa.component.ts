@@ -21,11 +21,12 @@ export class OpenMesaComponent implements OnInit {
     ) { }
 
   image = "";
+  nombreResto = "";
   textoBienvenida = "";
   numeroMesa = 0;
   nombreMozo = "";
   mesaData: Table;
-  inputComensales: string;
+  inputComensales= 2;
 
   ngOnInit(): void {
     let messageTable:string = '';
@@ -36,6 +37,7 @@ export class OpenMesaComponent implements OnInit {
     }
 
     this.image = this.mesaData.tenant.businessConfig.logo;
+    this.nombreResto = this.mesaData.tenant.businessConfig.displayName;
     this.textoBienvenida = this.mesaData.tenant.businessConfig.slogan
     this.numeroMesa = this.mesaData.id;
     this.nombreMozo = this.mesaData.user.firstNames;
@@ -56,7 +58,7 @@ export class OpenMesaComponent implements OnInit {
     tableService.tenantId = this.mesaData.tenantId;
     tableService.serviceStateId = 1; //hardcodeado, ver como se obtiene el servicio actual
     tableService.dinerUserId = currentUser.id;
-    tableService.diners = parseInt(this.inputComensales);
+    tableService.diners = this.inputComensales;
     tableService.items = [];
     tableService.serviceStart = new Date();
 

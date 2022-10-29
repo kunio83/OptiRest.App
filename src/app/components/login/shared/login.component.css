@@ -1,10 +1,5 @@
 .gradient-custom-2 {
-    /* fallback for old browsers */
-    background: #fccb90;
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: linear-gradient(180deg, #d92200, #ff8731);
 }
 
 @media (min-width: 768px) {
@@ -19,3 +14,30 @@
         border-bottom-right-radius: .3rem;
     }
 }
+
+.contlogo {
+    width: 100%;
+    background: linear-gradient(180deg, #d92200, #ff8731);
+    border-radius: 0 0 60px ;
+    text-align: center;
+    padding: 30px 10px 10px 10px;
+    animation-name: radanim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}	
+
+.contlogo img {
+    width: 150px;
+}
+
+.slogan{
+    color: #fff;
+    font-family: 'Poiret One', sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    margin-top: 10px;
+}
+
+@keyframes radanim {
+    0% {border-radius: 0px}
+  }
