@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Item } from 'src/app/models/item';
 import { CartillaService } from 'src/app/services/cartilla.service';
 
@@ -16,7 +17,8 @@ export class ItemComponent implements OnInit {
   hasThisItem: boolean = false;
   totalItemQuantity: number = 0;
   constructor(
-    private cartillaService: CartillaService
+    private cartillaService: CartillaService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -37,5 +39,6 @@ export class ItemComponent implements OnInit {
     this.hasThisItem = true;
 
     this.cartillaService.addItemsToOrder(this.item, this.inputItemQuantity);
+    this.toastr.info(this.inputItemQuantity.toString() + ' unidades de ' + this.item.title + ' agregados al pedido.');
   }
 }

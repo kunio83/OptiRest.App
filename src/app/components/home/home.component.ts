@@ -5,6 +5,7 @@ import { MesaService } from "src/app/services/mesa.service";
 import { MesaRequest } from "src/app/models/mesa-request";
 import { Router } from "@angular/router";
 import { Table } from "src/app/models/table";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-home",
@@ -17,38 +18,57 @@ export class HomeComponent implements OnInit {
   constructor(
     private userService: UsersService,
     public router: Router,
-    private mesaService: MesaService
+    private mesaService: MesaService,
+    private toastr: ToastrService
     ) {}
 
   ngOnInit() {
-    this.getUserLogged();
   }
 
-  getUserLogged() {
-    this.userService.getUser().subscribe(user => {
-      console.log(user);
-    });
-  }
 
   onScanSuccess(event: any): void {
     //enviar request de mesa
     let mesaRequest: MesaRequest = new MesaRequest();
-    // mesaRequest.mesaId = event;
-    mesaRequest.mesaId = 3;
-    mesaRequest.otrodato = "algun otro dato";
+    mesaRequest.mesaId = event;
+    //mesaRequest.mesaId = 3; //<-- solo para testeo
+    mesaRequest.otrodato = "";
 
     this.mesaService.getMesaData(mesaRequest)
     .subscribe({
       next: data => {
-          localStorage.setItem('currentMesa', JSON.stringify(data));
-          this.router.navigateByUrl('/openmesa');
+          if (data == undefined || data == null) {
+            throw new Error("No se encontró la mesa");
+          }
+
+          let isMesaValid = this.isMesaValid(data);
+
+          if (isMesaValid) {
+            localStorage.setItem('currentMesa', JSON.stringify(data));
+            this.router.navigateByUrl('/openmesa');
+          }
+      },
+      error: err => {
+        this.toastr.error(err.error, 'Error al obtener los datos de la mesa');
       }
     });
+  }
+
+  isMesaValid(mesa: Table): boolean {
+    if (mesa.stateId == 2) {
+      this.toastr.error("La mesa ya está ocupada");
+      return false;
+    }
+    else if (mesa.stateId == 3) {
+      this.toastr.error("La mesa está en mantenimiento");
+      return false;
+    }
+
+    return true;
   }
 
   //solo con propositos de testeo
   skipScan(): void{
     // borrar esto, solo para testeo
-    this.onScanSuccess(16);
+    this.onScanSuccess(3);
   }
 }

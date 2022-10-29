@@ -29,6 +29,12 @@ export class LoginComponent {
       .subscribe({
         next: user => {
 
+          if (user == undefined) {
+            this.showErrror();
+            this.showSpinner = false;
+            return;
+          }
+
           if (user.passwordHash == userInput.password)
           {
             //this.userService.setToken(data.token);
@@ -43,12 +49,16 @@ export class LoginComponent {
           this.showSpinner = false;
         },
         error: err => {
-          this.toastr.info('Datos ingresados incorrectos!');
+          this.showErrror();
           this.router.navigateByUrl('/login');
           this.showSpinner = false;
         },complete: ()=>{
           this.showSpinner = false;
         }
       });
+  }
+
+  showErrror(): void {
+    this.toastr.error('Datos ingresados incorrectos!');
   }
 }

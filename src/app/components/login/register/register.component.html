@@ -15,18 +15,18 @@
                 <form>
                   <p>Registro</p>
 
-                  <div class="form-outline mb-4">
+                  <!-- <div class="form-outline mb-4">
                     <input
                     type="userName"
                     id="userName-input"
                     class="form-control"
-                    [(ngModel)]="user.userName"
+                    [(ngModel)]="user.firstNames"
                     name="userName"
                     placeholder="Alias"
                     required="required"
                     />
                     <label class="form-label" for="userName-input">Nombre de Usuario</label>
-                  </div>
+                  </div> -->
 
                   <div class="form-outline mb-4">
                     <input
@@ -65,6 +65,19 @@
                     required="required"
                     />
                     <label class="form-label" for="email-input">Email</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input
+                    type="cellphone"
+                    id="cellphone-input"
+                    class="form-control"
+                    [(ngModel)]="user.celPhone"
+                    name="cellphone"
+                    placeholder="Número de Celular"
+                    required="required"
+                    />
+                    <label class="form-label" for="cellphone-input">Número de Celular</label>
                   </div>
 
                   <div class="form-outline mb-4">

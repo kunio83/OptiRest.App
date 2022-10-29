@@ -13,7 +13,6 @@ export class CartillaComponent implements OnInit {
   image: string;
   selectedTab: string = '';
   showModal: boolean = false;
-  // itemsToOrder: Item[] = [];
   itemsToOrder: Item[];
 
 

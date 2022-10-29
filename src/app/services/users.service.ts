@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { CookieService } from "ngx-cookie-service";
 import { User } from "../models/user";
 import { environment } from "src/environments/environment";
+import { DinerUser } from "../models/diner-user";
 
 @Injectable({
   providedIn: "root"
@@ -11,12 +12,12 @@ import { environment } from "src/environments/environment";
 export class UsersService {
     constructor(private http: HttpClient, private cookies: CookieService) {}
 
-  getUserByEmail(userEmail: string): Observable<any> {
-    return this.http.get<User>(environment.urlApiBase + 'User/usersByMail?email=' + userEmail);
+  getUserByEmail(userEmail: string): Observable<DinerUser> {
+    return this.http.get<DinerUser>(environment.urlApiBase + 'dinerUser/byEmail/' + userEmail);
   }
 
-  register(user: User): Observable<any> {
-    return this.http.post(environment.urlApiBase + 'user/', user);
+  register(user: DinerUser): Observable<any> {
+    return this.http.post(environment.urlApiBase + 'dineruser/', user);
   }
 
   setToken(token: string) {
