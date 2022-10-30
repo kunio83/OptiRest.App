@@ -5,16 +5,16 @@ import { environment } from 'src/environments/environment';
 import { Item } from '../models/item';
 import { ItemToOrder } from '../models/item-to-order';
 import { Order } from '../models/order';
+import { PedidoMozoRequest } from '../models/pedido-mozo-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartillaService {
-  private behaviorSubject: BehaviorSubject<ItemToOrder[]> = new BehaviorSubject<ItemToOrder[]>([]);
-  private currentTabBehaviorSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-
   constructor(private httpClient: HttpClient) { }
 
+  // Items
+  private behaviorSubject: BehaviorSubject<ItemToOrder[]> = new BehaviorSubject<ItemToOrder[]>([]);
   get itemsToOrder(): Observable<ItemToOrder[]> {return this.behaviorSubject.asObservable();}
 
   getAllItems(tenantId: number): Observable<Item[]> {
@@ -50,6 +50,7 @@ export class CartillaService {
     this.behaviorSubject.next(updatedValue);
   }
 
+  // Orders
   makeOrder(order: Order): Observable<Order> {
     console.log('ordenar');
     return this.httpClient.post<Order>(environment.urlApiBase + 'order', order);
@@ -59,6 +60,14 @@ export class CartillaService {
     this.behaviorSubject.next([]);
   }
 
+  // Tabs
+  private currentTabBehaviorSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   get getCurrentTab(): Observable<string> { return this.currentTabBehaviorSubject.asObservable();}
   set setCurrentTab(value: string) {this.currentTabBehaviorSubject.next(value);}
+
+  // Pedido Mozo
+  makePedidoMozo(pedidoMozoRequest: PedidoMozoRequest): any {
+    console.log('');
+    //return this.httpClient.post<PedidoMozoResponse>(environment.urlApiBase + 'pedidoMozo', pedidoMozoRequest);
+  }
 }
