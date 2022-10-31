@@ -1,41 +1,28 @@
 <app-headeropti></app-headeropti>
-<section style="background-color: #eee;">
-  <div class="container" style="border: 1px solid gray; text-align: center;">
 
-
-    <div class="row">
-      <div>
-        <button
-          class="btn btn-secondary"
-          type="submit"
-          [routerLink]="['/']" routerLinkActive="router-link-active"
-        >
-        Cancelar
-        </button>
-        <button
-              class="btn btn-secondary btn-block"
-              (click)="skipScan()"
-            >
-        Saltear
-        </button>
-      </div>
-    </div>
-    <div class="row"><h3>Escanear código QR de la mesa</h3></div>
-    <div class="row">
-      <div class="col-10">
-        <div>
-
-        <!-- QR ACA -->
+<div class="container" style="padding:0">
+  <div class="row" style="height: calc(100vh - 50px)">
+    <div class="col">
+      <div class="tit">Escanear código QR</div>
+      <div class="subtit">Escanea el código de la mesa para iniciar tu pedido</div>
+      
+      <!-- QR ACA -->
+      <div class="contqr">
         <div class="qr-reader">
-          <zxing-scanner
-            [formats]="allowedFormats"
-            (scanSuccess)="onScanSuccess($event)"
-          >
-        </zxing-scanner>
-        </div>
-
+          <div style="overflow: hidden; width:80vw; height:80vw; z-index:1">
+            <zxing-scanner [formats]="allowedFormats" (scanSuccess)="onScanSuccess($event)" previewFitMode="cover">
+            </zxing-scanner>
+          </div>
         </div>
       </div>
     </div>
+
+    <button class="btn btn-secondary" type="submit" [routerLink]="['/']" routerLinkActive="router-link-active">
+      Cancelar
+    </button>
+    <button class="btn btn-secondary btn-block" (click)="skipScan()">
+      Saltear
+    </button>
+
   </div>
-</section>
+</div>
