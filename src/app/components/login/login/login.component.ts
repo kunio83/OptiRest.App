@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef, Input, ViewChild } from "@angular/core";
 import { UsersService } from "../../../services/users.service";
 import { Router } from '@angular/router';
 import { User } from "src/app/models/user";
 import { FrontPageComponent } from "../../common/front-page/front-page.component";
 import { ToastrService } from "ngx-toastr";
 import { LoginService } from "src/app/services/login.service";
+import { SignalrService } from "src/app/services/signalr.service";
 
 @Component({
   selector: "app-login",
@@ -19,7 +20,8 @@ export class LoginComponent {
     public userService: UsersService,
     public router: Router,
     private toastr: ToastrService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private signalr: SignalrService
     ) {}
 
   login() {
@@ -62,5 +64,17 @@ export class LoginComponent {
 
   showErrror(): void {
     this.toastr.error('Datos ingresados incorrectos!');
+  }
+
+  //@Input() inputnotification;
+  @ViewChild('inputnotification') inputnotification:ElementRef;
+
+  sendPush() {
+    let message: string = "Hola, soy un mensaje de prueba";
+    let clientId: string = "optirest-admin"; // this is the connectionId of the client that will receive the message
+
+
+
+    this.signalr.sendNotification(this.inputnotification.nativeElement.value, clientId);
   }
 }
