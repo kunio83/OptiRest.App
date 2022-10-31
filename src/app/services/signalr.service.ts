@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class SignalrService {
 
   startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://localhost:5001/mainHub',{
+                            .withUrl(environment.urlNotificationsHub + 'mainHub',{
                               skipNegotiation: true,
                               transport: signalR.HttpTransportType.WebSockets
                             })
