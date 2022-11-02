@@ -59,8 +59,7 @@ export class SignalrService {
   };
 
   sendNotificationByAppName = (message: string, appName: string) => {
-    let appNameDestiny = 'optirest-admin';
-    let connectionIds: string[] = this.appsConnectedBehaviorSubject.getValue().map(a => a.notificationAppData).filter(a => a.appName == appNameDestiny).map(e => e.connectionId);
+    let connectionIds: string[] = this.appsConnectedBehaviorSubject.getValue().map(a => a.notificationAppData).filter(a => a.appName == appName).map(e => e.connectionId);
 
     this.hubConnection.invoke('sendMessage', message, connectionIds)
       .catch(err => console.error(err));
