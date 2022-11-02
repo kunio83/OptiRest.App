@@ -39,7 +39,7 @@ import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cart
     CartillaMenuComponent,
     ItemComponent,
     HeaderComponent,
-    CartillaOrderComponent
+    CartillaOrderComponent,
   ],
   imports: [
     BrowserModule,

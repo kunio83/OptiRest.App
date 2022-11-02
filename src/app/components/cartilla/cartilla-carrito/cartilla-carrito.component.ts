@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Item } from 'src/app/models/item';
 import { ItemToOrder } from 'src/app/models/item-to-order';
 import { Order } from 'src/app/models/order';
 import { OrderDetail } from 'src/app/models/order-detail';
@@ -17,10 +16,11 @@ export class CartillaCarritoComponent implements OnInit {
   itemsToOrder: ItemToOrder[] = [];
   totalPrice: number;
   itemsOredered: TableService2Item[];
+  totalPriceOrder: number;
 
   constructor(
     private cartillaService: CartillaService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
     ) { }
 
   ngOnInit(): void {
@@ -40,6 +40,10 @@ export class CartillaCarritoComponent implements OnInit {
 
   removeItemFromOrder(item: ItemToOrder): void {
     this.cartillaService.removeItemFromOrder(item);
+  }
+
+  updateTotalPrice(): void {
+    this.totalPriceOrder = this.itemsOredered.reduce((acc, item) => acc + item.item.price * item.quantity, 0);
   }
 
   order(): void {
@@ -67,5 +71,9 @@ export class CartillaCarritoComponent implements OnInit {
       this.toastr.error(error.error, 'Error al realizar el pedido');
     }
     );
+  }
+
+  cuenta(): void{
+    this.updateTotalPrice();
   }
 }

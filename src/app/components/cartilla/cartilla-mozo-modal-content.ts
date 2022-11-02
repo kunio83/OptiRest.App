@@ -57,12 +57,6 @@ import { ToastrService } from 'ngx-toastr';
           <button type="submit" class="btn btn-danger btn-sm float-end mb-3" (click)="enviarPedido()">Enviar Pedido</button>
 
       </form>
-
-
-    <!--
-		<div class="modal-footer">
-			<button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-		</div>-->
 	`,
 })
 export class NgbdModalContent {
