@@ -1,4 +1,6 @@
+import { CuentaModalComponent } from './cuenta-modal/cuenta-modal.component';
 import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ItemToOrder } from 'src/app/models/item-to-order';
 import { Order } from 'src/app/models/order';
@@ -21,6 +23,7 @@ export class CartillaCarritoComponent implements OnInit {
   constructor(
     private cartillaService: CartillaService,
     private toastr: ToastrService,
+    private modalService: NgbModal,
     ) { }
 
   ngOnInit(): void {
@@ -75,5 +78,9 @@ export class CartillaCarritoComponent implements OnInit {
 
   cuenta(): void{
     this.updateTotalPrice();
+    const modalRef = this.modalService.open(CuentaModalComponent);
+		modalRef.componentInstance.name = 'Cuenta';
+    modalRef.componentInstance.totalPriceOrder = this.totalPriceOrder;
+    modalRef.componentInstance.itemsOredered = this.itemsOredered;
   }
 }

@@ -1,4 +1,4 @@
-import { CartillaMozoModal } from './components/cartilla/cartilla-mozo-modal/cartilla-mozo-modal.component';
+import { CartillaMozoModal as CartillaMozoModalComponent } from './components/cartilla/cartilla-mozo-modal/cartilla-mozo-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,7 @@ import { CartillaService } from './services/cartilla.service';
 import { HeaderComponent } from './components/common/headeropti/header.component';
 import { CanActivateViaAuthGuardService } from './services/can-activate-via-guard.service';
 import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cartilla-order/cartilla-order.component';
+import { CuentaModalComponent } from './components/cartilla/cartilla-carrito/cuenta-modal/cuenta-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cart
     ItemComponent,
     HeaderComponent,
     CartillaOrderComponent,
-    CartillaMozoModal
+    CartillaMozoModalComponent,
+    CuentaModalComponent
   ],
   imports: [
     FormsModule,
