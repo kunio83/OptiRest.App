@@ -1,8 +1,9 @@
+import { CartillaMozoModal } from './components/cartilla/cartilla-mozo-modal/cartilla-mozo-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
@@ -13,7 +14,7 @@ import { FrontPageComponent } from './components/common/front-page/front-page.co
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './materia.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule}  from '@angular/platform-browser/animations';
 import { MesaService } from './services/mesa.service';
 import { OpenMesaComponent } from './components/open-mesa/open-mesa.component';
 import { CartillaComponent } from './components/cartilla/cartilla.component';
@@ -39,14 +40,16 @@ import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cart
     CartillaMenuComponent,
     ItemComponent,
     HeaderComponent,
-    CartillaOrderComponent
+    CartillaOrderComponent,
+    CartillaMozoModal
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule,
     HttpClientModule,
     ZXingScannerModule,
     MaterialModule,
@@ -54,7 +57,6 @@ import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cart
     NgxBootstrapIconsModule.pick(allIcons)
   ],
   providers: [CookieService, MesaService, CartillaService, CanActivateViaAuthGuardService],
-  bootstrap: [AppComponent],
-  entryComponents: []
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
