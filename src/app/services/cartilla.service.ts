@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Item } from '../models/item';
 import { ItemToOrder } from '../models/item-to-order';
 import { Order } from '../models/order';
-import { PedidoMozoRequest } from '../models/pedido-mozo-request';
+import { TableService2Item } from '../models/table-service2-items';
 
 @Injectable({
   providedIn: 'root'
@@ -65,9 +65,7 @@ export class CartillaService {
   get getCurrentTab(): Observable<string> { return this.currentTabBehaviorSubject.asObservable();}
   set setCurrentTab(value: string) {this.currentTabBehaviorSubject.next(value);}
 
-  // Pedido Mozo
-  makePedidoMozo(pedidoMozoRequest: PedidoMozoRequest): any {
-    console.log('');
-    //return this.httpClient.post<PedidoMozoResponse>(environment.urlApiBase + 'pedidoMozo', pedidoMozoRequest);
+  getOrderedItems(tableServciceid: number): Observable<TableService2Item[]> {
+    return this.httpClient.get<TableService2Item[]>(environment.urlApiBase + 'TableService2Item/byTableService?tableServiceId=' + tableServciceid);
   }
 }

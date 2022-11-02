@@ -5,6 +5,7 @@ import { ItemToOrder } from 'src/app/models/item-to-order';
 import { Order } from 'src/app/models/order';
 import { OrderDetail } from 'src/app/models/order-detail';
 import { TableService } from 'src/app/models/table-service';
+import { TableService2Item } from 'src/app/models/table-service2-items';
 import { CartillaService } from 'src/app/services/cartilla.service';
 
 @Component({
@@ -15,6 +16,7 @@ import { CartillaService } from 'src/app/services/cartilla.service';
 export class CartillaCarritoComponent implements OnInit {
   itemsToOrder: ItemToOrder[] = [];
   totalPrice: number;
+  itemsOredered: TableService2Item[];
 
   constructor(
     private cartillaService: CartillaService,
@@ -25,6 +27,14 @@ export class CartillaCarritoComponent implements OnInit {
     this.cartillaService.itemsToOrder.subscribe(items => {
       this.itemsToOrder = items;
       this.totalPrice = this.itemsToOrder.reduce((acc, item) => acc + item.item.price * item.quantity, 0);
+    });
+
+    this.updateOrderedItems();
+  }
+
+  updateOrderedItems(){
+    this.cartillaService.getOrderedItems(JSON.parse(localStorage.getItem('currentTableService') ?? '').id).subscribe(response => {
+      this.itemsOredered = response;
     });
   }
 
@@ -51,6 +61,7 @@ export class CartillaCarritoComponent implements OnInit {
       if (response) {
         this.cartillaService.clearOrder();
         this.toastr.success('Pedido realizado con éxito');
+        this.updateOrderedItems();
       }
     }, error => {
       this.toastr.error(error.error, 'Error al realizar el pedido');
