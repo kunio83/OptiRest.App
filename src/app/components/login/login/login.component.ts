@@ -43,7 +43,7 @@ export class LoginComponent {
           {
             this.loginService.setUserLogged(true);
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigateByUrl('/qrreading');
+            this.router.navigateByUrl('/cartilla');
           }
           else
           {
@@ -54,7 +54,7 @@ export class LoginComponent {
         },
         error: err => {
           this.showErrror();
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/');
           this.showSpinner = false;
         },complete: ()=>{
           this.showSpinner = false;

@@ -12,11 +12,11 @@ import { DinerUser } from "../models/diner-user";
 export class UsersService {
     constructor(private http: HttpClient, private cookies: CookieService) {}
 
-  getUserByEmail(userEmail: string): Observable<DinerUser> {
-    return this.http.get<DinerUser>(environment.urlApiBase + 'dinerUser/byEmail/' + userEmail);
+  getUserByEmail(userEmail: string): Observable<User> {
+    return this.http.get<User>(environment.urlApiBase + 'user/usersByMail/?email=' + userEmail);
   }
 
-  register(user: DinerUser): Observable<any> {
-    return this.http.post(environment.urlApiBase + 'dineruser/', user);
-  }
+  // register(user: User): Observable<any> {
+  //   return this.http.post(environment.urlApiBase + 'user/', user);
+  // }
 }

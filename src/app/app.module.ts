@@ -1,4 +1,4 @@
-import { CartillaMozoModal as CartillaMozoModalComponent } from './components/cartilla/cartilla-mozo-modal/cartilla-mozo-modal.component';
+import { CuentaModalComponent } from './components/cartilla/cartilla-carrito/cuenta-modal/cuenta-modal.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,8 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
-import { QRReadingComponent } from './components/qr-reading/qr-reading.component';
-import { RegisterComponent } from './components/login/register/register.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { FrontPageComponent } from './components/common/front-page/front-page.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -26,14 +24,12 @@ import { CartillaService } from './services/cartilla.service';
 import { HeaderComponent } from './components/common/headeropti/header.component';
 import { CanActivateViaAuthGuardService } from './services/can-activate-via-guard.service';
 import { CartillaOrderComponent } from './components/cartilla/cartilla-menu/cartilla-order/cartilla-order.component';
-import { CuentaModalComponent } from './components/cartilla/cartilla-carrito/cuenta-modal/cuenta-modal.component';
+import { NotificacionesComponent } from './components/notificaciones/notificaciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QRReadingComponent,
     LoginComponent,
-    RegisterComponent,
     FrontPageComponent,
     OpenMesaComponent,
     CartillaComponent,
@@ -42,8 +38,8 @@ import { CuentaModalComponent } from './components/cartilla/cartilla-carrito/cue
     ItemComponent,
     HeaderComponent,
     CartillaOrderComponent,
-    CartillaMozoModalComponent,
-    CuentaModalComponent
+    CuentaModalComponent,
+    NotificacionesComponent
   ],
   imports: [
     FormsModule,
