@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
-import { QRReadingComponent } from './components/home/qr-reading.component';
+import { QRReadingComponent } from './components/qr-reading/qr-reading.component';
 import { RegisterComponent } from './components/login/register/register.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { FrontPageComponent } from './components/common/front-page/front-page.component';

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { NgbActiveModal, } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -65,16 +66,32 @@ import { ToastrService } from 'ngx-toastr';
 		</div>-->
 	`,
 })
+
 export class NgbdModalContent {
 	@Input() name: string;
 
 	constructor(
     public activeModal: NgbActiveModal,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private formBuilder: FormBuilder
     ) {}
+
+    pedidoMozoForm = this.formBuilder.group({
+      'checkbox-cervilletas': [false],
+      'checkbox-hielo': false,
+      'checkbox-sal': false,
+      'checkbox-limon': false,
+      'checkbox-condimentos': false,
+      'textarea-customPedido': ''
+    });
 
   enviarPedido: () => void = () => {
     this.toastr.success('Pedido enviado!');
     this.activeModal.close();
   }
+
+  onSubmit(): void {
+
+  }
 }
+

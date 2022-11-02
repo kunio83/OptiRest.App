@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  urlApiBase: 'https://optirestapi-v1.azurewebsites.net/api/'
+  urlApiBase: 'https://optirestapi-v1.azurewebsites.net/api/',
+  urlNotificationsHub: 'https://optirestnotifications.azurewebsites.net/'
   //  urlApiBase: 'https://localhost:7146/api/'  //local
+  //urlNotificationsHub: 'https://localhost:5001/'
 };
 
 /*
