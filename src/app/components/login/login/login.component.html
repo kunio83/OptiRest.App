@@ -2,7 +2,7 @@
 
   <div class="contlogo">
     <img src="../../../assets/log400.png" alt="logo" class="logo">
-    <p class="slogan">App Mozo</p>
+    <p class="slogan">Comer sin complicaciones</p>
   </div>
 
   <div class="container p-4">
@@ -29,6 +29,13 @@
               <mat-spinner style="margin:0 auto;" *ngIf="showSpinner" mode="indeterminate" diameter="20">
               </mat-spinner>
             </p>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center pb-4">
+            <p class="mb-0 me-2">¿No tienes una cuenta?</p>
+            <button type="button" routerLink="/register" class="btn btn-outline-danger">
+              Crear cuenta
+            </button>
           </div>
 
         </form>

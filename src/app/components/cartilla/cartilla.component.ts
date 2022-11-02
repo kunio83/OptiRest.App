@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 import { Table } from 'src/app/models/table';
 import { CartillaService } from 'src/app/services/cartilla.service';
+import { CartillaMozoModal } from './cartilla-mozo-modal/cartilla-mozo-modal.component';
 
 @Component({
   selector: 'app-cartilla',
@@ -23,9 +24,9 @@ export class CartillaComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    //let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
+    let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
 
-    //this.image = mesaData.tenant.businessConfig.logo;
+    this.image = mesaData.tenant.businessConfig.logo;
 
 
     this.cartillaService.getCurrentTab.subscribe(tab => {
@@ -44,8 +45,9 @@ export class CartillaComponent implements OnInit {
     //this.selectedTab = 'carta';
   }
 
-  openNotifications(): void{
-    this.cartillaService.setCurrentTab = 'notificaciones';
-    //this.selectedTab = 'notifications';
+  showMozoModal(): void{
+    console.log('openMozoModal');
+    const modalRef = this.modalService.open(CartillaMozoModal);
+		modalRef.componentInstance.name = 'World';
   }
 }

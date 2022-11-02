@@ -6,21 +6,18 @@ import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 import { AppData } from '../models/app-data';
 import { DinerUser } from '../models/diner-user';
-import { NotificationService } from './notificacion.service';
-import { Notification } from '../models/notification';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalrService {
-  appName: string = 'optirest-mozo';
+  appName: string = 'optirest-comensal';
   appGuid: string;
   hubConnection: signalR.HubConnection;
   private appsConnectedBehaviorSubject: BehaviorSubject<AppData[]> = new BehaviorSubject<AppData[]>([]);
 
   constructor(
-    private toastr: ToastrService,
-    private notificationService: NotificationService
+    private toastr: ToastrService
   ) { }
 
   startConnection = () => {
@@ -75,11 +72,11 @@ export class SignalrService {
 
   startReceiveMessage = () => {
     this.hubConnection.on('receiveMessage', (message) => {
-      this.toastr.show(message);
+      this.toastr.success(message);
 
-      let notification = new Notification(uuidv4(), 'Some title', message, new Date(), 'Some type', false);
+      //let notification = new Notification(uuidv4(), 'Some title', message, new Date(), 'Some type', false);
 
-      this.notificationService.saveNotificationToStorage(notification);
+      //this.notificationService.saveNotificationToStorage(notification);
     });
   }
 }
