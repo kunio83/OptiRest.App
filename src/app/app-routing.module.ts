@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { CartillaComponent } from './components/cartilla/cartilla.component';
 import { QRReadingComponent } from './components/qr-reading/qr-reading.component';
 import { LoginComponent } from './components/login/login/login.component';
