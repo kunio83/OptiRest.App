@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Item } from '../models/item';
 import { ItemToOrder } from '../models/item-to-order';
 import { Order } from '../models/order';
+import { TableService2Item } from '../models/table-service2-items';
 
 @Injectable({
   providedIn: 'root'
@@ -61,4 +62,8 @@ export class CartillaService {
 
   get getCurrentTab(): Observable<string> { return this.currentTabBehaviorSubject.asObservable();}
   set setCurrentTab(value: string) {this.currentTabBehaviorSubject.next(value);}
+
+  getOrderedItems(tableServciceid: number): Observable<TableService2Item[]> {
+    return this.httpClient.get<TableService2Item[]>(environment.urlApiBase + 'TableService2Item/byTableService?tableServiceId=' + tableServciceid);
+  }
 }

@@ -69,6 +69,6 @@ export class QRReadingComponent implements OnInit {
   //solo con propositos de testeo
   skipScan(): void{
     // borrar esto, solo para testeo
-    this.onScanSuccess(3);
+    this.onScanSuccess(29);
   }
 }
