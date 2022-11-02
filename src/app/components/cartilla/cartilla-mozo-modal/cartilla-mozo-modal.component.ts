@@ -52,6 +52,7 @@ export class CartillaMozoModal implements OnInit{
     ${this.pedidoMozoForm.value['checkbox-condimentos'] ? '* Condimentos \r\n' : ''}
     ${this.pedidoMozoForm.value['textarea-custom'] ? 'Personalizado: ' + this.pedidoMozoForm.value['textarea-custom'] : ''}`;
     this.signalrService.sendNotificationByAppName(message, 'optirest-admin');
+    this.signalrService.sendNotificationByAppName(message, 'optirest-mozo');
   }
 
   onSubmit(): void {
