@@ -20,8 +20,9 @@ export class CartillaMenuComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
-    this.cartillaService.getAllItems(mesaData.tenantId).subscribe(items => {
+    //let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
+    //this.cartillaService.getAllItems(mesaData.tenantId).subscribe(items => {
+    this.cartillaService.getAllItems(2).subscribe(items => {
       const itemCategoryNames: string[] = [];
       this.itemsFiltered = items;
       this.allItems = items;
@@ -35,7 +36,6 @@ export class CartillaMenuComponent implements OnInit {
             this.itemCategories.push(itemCategory);
           }
         });
-
     });
   }
 
