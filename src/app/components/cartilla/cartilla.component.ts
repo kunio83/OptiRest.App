@@ -3,7 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 import { Table } from 'src/app/models/table';
 import { CartillaService } from 'src/app/services/cartilla.service';
-import { NgbdModalContent } from './cartilla-mozo-modal-content';
+import { CartillaMozoModal } from './cartilla-mozo-modal/cartilla-mozo-modal.component';
 
 @Component({
   selector: 'app-cartilla',
@@ -47,7 +47,7 @@ export class CartillaComponent implements OnInit {
 
   showMozoModal(): void{
     console.log('openMozoModal');
-    const modalRef = this.modalService.open(NgbdModalContent);
+    const modalRef = this.modalService.open(CartillaMozoModal);
 		modalRef.componentInstance.name = 'World';
   }
 }

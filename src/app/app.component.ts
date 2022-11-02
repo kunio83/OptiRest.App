@@ -17,13 +17,12 @@ export class AppComponent implements OnInit, OnDestroy {
      this.signalrService.startConnection();
 
      setTimeout(() => {
-       this.signalrService.askServerListener();
-       //this.signalrService.sendNotification();
-     }, 2000);
+      this.signalrService.startReceiveMessage();
+    }, 2000);
   }
 
   ngOnDestroy() {
-    this.signalrService.hubConnection.off('askServerResponse');
+    this.signalrService.hubConnection.off('receiveMessage');
     this.signalrService.hubConnection.stop();
   }
 }

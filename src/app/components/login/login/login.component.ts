@@ -65,16 +65,4 @@ export class LoginComponent {
   showErrror(): void {
     this.toastr.error('Datos ingresados incorrectos!');
   }
-
-  //@Input() inputnotification;
-  @ViewChild('inputnotification') inputnotification:ElementRef;
-
-  sendPush() {
-    let message: string = "Hola, soy un mensaje de prueba";
-    let clientId: string = "optirest-admin"; // this is the connectionId of the client that will receive the message
-
-
-
-    this.signalr.sendNotification(this.inputnotification.nativeElement.value, clientId);
-  }
 }
