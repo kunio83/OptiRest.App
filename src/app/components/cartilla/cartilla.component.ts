@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 import { Table } from 'src/app/models/table';
 import { CartillaService } from 'src/app/services/cartilla.service';
+import { LoginService } from 'src/app/services/login.service';
 import { CartillaMozoModal } from './cartilla-mozo-modal/cartilla-mozo-modal.component';
 
 @Component({
@@ -15,24 +16,31 @@ export class CartillaComponent implements OnInit {
   selectedTab: string = '';
   showModal: boolean = false;
   itemsToOrder: Item[];
+  isBuyer: boolean = true;
 
 
   constructor(
     private modalService: NgbModal,
-    private cartillaService: CartillaService
+    private cartillaService: CartillaService,
+    private loginSerice: LoginService
   ) {
     }
 
   ngOnInit(): void {
-    let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
-
-    this.image = mesaData.tenant.businessConfig.logo;
-
-
-    this.cartillaService.getCurrentTab.subscribe(tab => {
-      this.selectedTab = tab;
-    });
     this.cartillaService.setCurrentTab = 'carta';
+
+    this.loginSerice.isUserLogged.subscribe((isUserLogged: boolean) => {
+      this.isBuyer = isUserLogged;
+
+      let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
+      this.image = mesaData.tenant.businessConfig.logo;
+
+      this.cartillaService.getCurrentTab.subscribe(tab => {
+        this.selectedTab = tab;
+      });
+    });
+
+
   }
 
   openLista(): void{

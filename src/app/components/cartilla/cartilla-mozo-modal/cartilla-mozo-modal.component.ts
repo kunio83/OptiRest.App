@@ -8,7 +8,7 @@ import { SignalrService } from 'src/app/services/signalr.service';
 
 @Component({
 	selector: "cartilla-mozo-modal",
-	templateUrl: "./cartilla-mozo-modal.html"
+	templateUrl: "./cartilla-mozo-modal.component.html"
 })
 
 export class CartillaMozoModal implements OnInit{
@@ -50,7 +50,7 @@ export class CartillaMozoModal implements OnInit{
     ${this.pedidoMozoForm.value['checkbox-sal'] ? '* Sal \r\n' : ''}
     ${this.pedidoMozoForm.value['checkbox-limon'] ? '* Limon \r\n' : ''}
     ${this.pedidoMozoForm.value['checkbox-condimentos'] ? '* Condimentos \r\n' : ''}
-    ${this.pedidoMozoForm.value['textarea-custom'] ? 'Personalizado: ' + this.pedidoMozoForm.value['textarea-custom'] : ''}`;
+    ${this.pedidoMozoForm.value['textarea-custom'] ? '* Personalizado: ' + this.pedidoMozoForm.value['textarea-custom'] : ''}`;
     this.signalrService.sendNotificationByAppName(message, 'optirest-admin');
     this.signalrService.sendNotificationByAppName(message, 'optirest-mozo');
   }

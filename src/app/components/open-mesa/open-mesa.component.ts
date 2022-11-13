@@ -23,7 +23,7 @@ export class OpenMesaComponent implements OnInit {
   image = "";
   nombreResto = "";
   textoBienvenida = "";
-  numeroMesa = 0;
+  nombreMesa = "";
   nombreMozo = "";
   mesaData: Table;
   inputComensales= 2;
@@ -39,7 +39,7 @@ export class OpenMesaComponent implements OnInit {
     this.image = this.mesaData.tenant.businessConfig.logo;
     this.nombreResto = this.mesaData.tenant.businessConfig.displayName;
     this.textoBienvenida = this.mesaData.tenant.businessConfig.slogan
-    this.numeroMesa = this.mesaData.id;
+    this.nombreMesa = this.mesaData.name;
     this.nombreMozo = this.mesaData.user.firstNames;
 
     messageTable = (this.mesaData.stateId == 2) ? 'La mesa se encuentra Cerrada' : (this.mesaData.stateId == 3) ? 'La mesa se encuentra Ocupada' : '';

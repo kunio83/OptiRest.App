@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 import { AppData } from '../models/app-data';
 import { DinerUser } from '../models/diner-user';
+import { TableService } from '../models/table-service';
+import { CartillaService } from './cartilla.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class SignalrService {
   private appsConnectedBehaviorSubject: BehaviorSubject<AppData[]> = new BehaviorSubject<AppData[]>([]);
 
   constructor(
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cartillaService: CartillaService
   ) { }
 
   startConnection = () => {
@@ -63,7 +66,6 @@ export class SignalrService {
   }
 
   sendNotificationByAppGuid = (message: string, appGuid: string) => {
-    let appNameDestiny = 'optirest-admin';
     let connectionId: string = this.appsConnectedBehaviorSubject.getValue().find(q => q.appGuid == appGuid)?.notificationAppData.connectionId ?? '';
 
     this.hubConnection.invoke('sendMessage', message, [connectionId])
@@ -72,11 +74,15 @@ export class SignalrService {
 
   startReceiveMessage = () => {
     this.hubConnection.on('receiveMessage', (message) => {
-      this.toastr.success(message);
 
-      //let notification = new Notification(uuidv4(), 'Some title', message, new Date(), 'Some type', false);
+      if (message.includes('refreshorder')) {
+        let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
-      //this.notificationService.saveNotificationToStorage(notification);
+        this.cartillaService.refreshOrderedItems(currentTableService.id);
+      } else {
+        this.toastr.success(message);
+      }
+
     });
   }
 }

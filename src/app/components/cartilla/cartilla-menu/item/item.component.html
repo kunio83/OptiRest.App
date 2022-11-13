@@ -3,7 +3,7 @@
     <div class="cartilla-item__name">
       {{ item.title }}
     </div>
-      <div class="btns">
+      <div class="btns" *ngIf="isBuyer">
           <button type="button" class="btn btn-number" data-type="minus" (click)="decreaseItemQuantity()">
             <i-bs name="dash-square" class="item-icon"></i-bs>
           </button>
@@ -19,7 +19,7 @@
       {{ item.summary }}
     </div>
 
-    <div>
+    <div *ngIf="isBuyer">
       <input type="button" class="btn btn-danger btn-sm btnpedir" value="Agregar" (click)="addItemToCart()"/>
     </div>
   </div>

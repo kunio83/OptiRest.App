@@ -13,6 +13,7 @@ export class CartillaMenuComponent implements OnInit {
   itemsFiltered: Item[] = [];
   allItems: Item[] = [];
   itemCategories: ItemCategory[] = [];
+  @Input() isBuyer: boolean;
   @Output() itemsToOrder: Item[] = [];
 
   constructor(

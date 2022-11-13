@@ -15,7 +15,10 @@ export class CartillaService {
 
   // Items
   private behaviorSubject: BehaviorSubject<ItemToOrder[]> = new BehaviorSubject<ItemToOrder[]>([]);
+  private itemsOrderedBehaviorSubject: BehaviorSubject<TableService2Item[]> = new BehaviorSubject<TableService2Item[]>([]);
+
   get itemsToOrder(): Observable<ItemToOrder[]> {return this.behaviorSubject.asObservable();}
+  get itemsOrdered(): Observable<TableService2Item[]>{return this.itemsOrderedBehaviorSubject.asObservable();}
 
   getAllItems(tenantId: number): Observable<Item[]> {
     return this.httpClient.get<Item[]>(environment.urlApiBase + 'item?tenantId=' + tenantId);
@@ -60,12 +63,27 @@ export class CartillaService {
     this.behaviorSubject.next([]);
   }
 
+  getOrderedItems(tableServciceid: number): Observable<TableService2Item[]> {
+    if (this.itemsOrderedBehaviorSubject.getValue() == undefined || this.itemsOrderedBehaviorSubject.getValue().length == 0) {
+      this.refreshOrderedItems(tableServciceid);
+    } else {
+      this.itemsOrderedBehaviorSubject.next(this.itemsOrderedBehaviorSubject.getValue());
+    }
+
+    return this.itemsOrderedBehaviorSubject.asObservable();
+  }
+
+  refreshOrderedItems(tableServciceid: number): void {
+    this.httpClient.get<TableService2Item[]>(environment.urlApiBase + 'TableService2Item/byTableService?tableServiceId=' + tableServciceid).subscribe((itemsOrdered) => {
+      this.itemsOrderedBehaviorSubject.next(itemsOrdered);
+    });
+  }
+
   // Tabs
   private currentTabBehaviorSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   get getCurrentTab(): Observable<string> { return this.currentTabBehaviorSubject.asObservable();}
   set setCurrentTab(value: string) {this.currentTabBehaviorSubject.next(value);}
 
-  getOrderedItems(tableServciceid: number): Observable<TableService2Item[]> {
-    return this.httpClient.get<TableService2Item[]>(environment.urlApiBase + 'TableService2Item/byTableService?tableServiceId=' + tableServciceid);
-  }
+  // payments
+
 }

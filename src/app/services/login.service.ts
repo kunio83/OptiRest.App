@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -9,10 +10,18 @@ export class LoginService {
 
   get isUserLogged(): Observable<boolean> {return this.behaviorSubject.asObservable();}
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   setUserLogged(isLogged: boolean): void {
     this.behaviorSubject.next(isLogged);
   }
 
+  logOut() : void {
+    this.behaviorSubject.next(false);
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentMesa');
+    this.router.navigateByUrl('/');
+  }
 }

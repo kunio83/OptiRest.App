@@ -30,7 +30,6 @@ export class QRReadingComponent implements OnInit {
     //enviar request de mesa
     let mesaRequest: MesaRequest = new MesaRequest();
     mesaRequest.mesaId = event;
-    //mesaRequest.mesaId = 3; //<-- solo para testeo
     mesaRequest.otrodato = "";
 
     this.mesaService.getMesaData(mesaRequest)
@@ -70,5 +69,9 @@ export class QRReadingComponent implements OnInit {
   skipScan(): void{
     // borrar esto, solo para testeo
     this.onScanSuccess(3);
+  }
+
+  goToMenu(): void {
+    this.router.navigateByUrl('/cartilla');
   }
 }
