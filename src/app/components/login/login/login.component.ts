@@ -6,6 +6,7 @@ import { FrontPageComponent } from "../../common/front-page/front-page.component
 import { ToastrService } from "ngx-toastr";
 import { LoginService } from "src/app/services/login.service";
 import { SignalrService } from "src/app/services/signalr.service";
+import { TableService } from "src/app/models/table-service";
 
 @Component({
   selector: "app-login",
@@ -42,8 +43,17 @@ export class LoginComponent {
           if (user.passwordHash == userInput.password)
           {
             this.loginService.setUserLogged(true);
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.router.navigateByUrl('/qrreading');
+
+            //verifico si tiene un servicio abierto
+            if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
+              let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+
+              this.router.navigateByUrl('/cartilla/lista');
+            } else {
+
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.router.navigateByUrl('/qrreading');
+            }
           }
           else
           {

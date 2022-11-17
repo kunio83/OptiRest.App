@@ -1,3 +1,4 @@
+import { SignalrService } from 'src/app/services/signalr.service';
 import { CuentaModalComponent } from './cuenta-modal/cuenta-modal.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +25,7 @@ export class CartillaCarritoComponent implements OnInit {
     private cartillaService: CartillaService,
     private toastr: ToastrService,
     private modalService: NgbModal,
+    private signalrService: SignalrService
     ) { }
 
   ngOnInit(): void {
@@ -70,7 +72,9 @@ export class CartillaCarritoComponent implements OnInit {
       if (response) {
         this.cartillaService.clearOrder();
         this.toastr.success('Pedido realizado con éxito');
+        this.cartillaService.refreshOrderedItems(currentTableService.id);
         this.updateOrderedItems();
+        this.signalrService.sendNotificationByAppName('refreshorder','optirest-admin');
       }
     }, error => {
       this.toastr.error(error.error, 'Error al realizar el pedido');

@@ -28,7 +28,7 @@ export class RegisterComponent {
       .subscribe({
         next: data => {
           setTimeout(() => {
-            this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/');
           }, 2000);
           this.toastr.success('Usuario registrado correctamente', 'Inicie sesión');
 

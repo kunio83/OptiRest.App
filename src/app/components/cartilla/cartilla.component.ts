@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from 'src/app/models/item';
 import { Table } from 'src/app/models/table';
@@ -22,22 +23,25 @@ export class CartillaComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private cartillaService: CartillaService,
-    private loginSerice: LoginService
+    private loginService: LoginService,
+    private route: ActivatedRoute
   ) {
     }
 
   ngOnInit(): void {
-    this.cartillaService.setCurrentTab = 'carta';
+    this.cartillaService.setCurrentTab = this.route.snapshot.paramMap.get("selectedTab") ?? 'carta';
 
-    this.loginSerice.isUserLogged.subscribe((isUserLogged: boolean) => {
+    this.loginService.isUserLogged.subscribe((isUserLogged: boolean) => {
       this.isBuyer = isUserLogged;
 
-      let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
-      this.image = mesaData.tenant.businessConfig.logo;
+      if (localStorage.getItem('currentMesa')) {
+        let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
+        this.image = mesaData.tenant.businessConfig.logo;
 
-      this.cartillaService.getCurrentTab.subscribe(tab => {
-        this.selectedTab = tab;
-      });
+        this.cartillaService.getCurrentTab.subscribe(tab => {
+          this.selectedTab = tab;
+        });
+      }
     });
 
 

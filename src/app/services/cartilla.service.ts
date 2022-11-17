@@ -1,3 +1,4 @@
+import { TableService } from 'src/app/models/table-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -66,8 +67,6 @@ export class CartillaService {
   getOrderedItems(tableServciceid: number): Observable<TableService2Item[]> {
     if (this.itemsOrderedBehaviorSubject.getValue() == undefined || this.itemsOrderedBehaviorSubject.getValue().length == 0) {
       this.refreshOrderedItems(tableServciceid);
-    } else {
-      this.itemsOrderedBehaviorSubject.next(this.itemsOrderedBehaviorSubject.getValue());
     }
 
     return this.itemsOrderedBehaviorSubject.asObservable();
@@ -85,5 +84,8 @@ export class CartillaService {
   set setCurrentTab(value: string) {this.currentTabBehaviorSubject.next(value);}
 
   // payments
+  updateTableService(tableService: TableService): Observable<TableService> {
+    return this.httpClient.put<any>(environment.urlApiBase + 'TableService/', tableService);
+  }
 
 }

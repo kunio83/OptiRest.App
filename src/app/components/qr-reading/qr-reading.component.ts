@@ -14,7 +14,7 @@ import { ToastrService } from "ngx-toastr";
 })
 export class QRReadingComponent implements OnInit {
   allowedFormats = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.DATA_MATRIX];
-
+  skipedSkan: boolean = false;
   constructor(
     private userService: UsersService,
     public router: Router,
@@ -39,7 +39,7 @@ export class QRReadingComponent implements OnInit {
             throw new Error("No se encontró la mesa");
           }
 
-          let isMesaValid = this.isMesaValid(data);
+          let isMesaValid = this.skipedSkan || this.isMesaValid(data);
 
           if (isMesaValid) {
             localStorage.setItem('currentMesa', JSON.stringify(data));
@@ -68,6 +68,7 @@ export class QRReadingComponent implements OnInit {
   //solo con propositos de testeo
   skipScan(): void{
     // borrar esto, solo para testeo
+    this.skipedSkan = true;
     this.onScanSuccess(3);
   }
 

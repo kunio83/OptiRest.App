@@ -1,3 +1,5 @@
+import { CartillaService } from 'src/app/services/cartilla.service';
+import { TableService } from 'src/app/models/table-service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +27,7 @@ export class CuentaModalComponent implements OnInit {
     private signalrService: SignalrService,
     private router: Router,
     private loginService: LoginService,
+    private cartillaService: CartillaService
     ) {}
 
     ngOnInit(): void {
@@ -41,14 +44,25 @@ export class CuentaModalComponent implements OnInit {
     this.showMPModal = true;
 
 
+    // hacer update a tableservice
+    let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+    currentTableService.paymentMethod = 'mercadopago';
+    currentTableService.paymentReference = '-';
+    currentTableService.comment= '-';
 
-    setTimeout(() => {
-      this.showSpinner = false;
-      this.endPayment = true;
-      this.signalrService.sendNotificationByAppName('La mesa 3 pagó a traves de MercadoPago', 'optirest-admin');
-      this.signalrService.sendNotificationByAppName('La mesa 3 pagó a traves de MercadoPago', 'optirest-mozo');
+    this.cartillaService.updateTableService(currentTableService).subscribe(response => {
 
-    }, 2000);
+      setTimeout(() => {
+        this.showSpinner = false;
+        this.endPayment = true;
+        this.signalrService.sendNotificationByAppName('La mesa 3 pagó a traves de MercadoPago', 'optirest-admin');
+        this.signalrService.sendNotificationByAppName('La mesa 3 pagó a traves de MercadoPago', 'optirest-mozo');
+
+      }, 2000);
+
+    });
+
+
   }
 
   payCash(): void {

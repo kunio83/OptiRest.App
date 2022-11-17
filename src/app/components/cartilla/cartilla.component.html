@@ -1,18 +1,20 @@
 <app-headeropti></app-headeropti>
 
-  <div class="contbuttons" >
-    <div *ngIf="true || isBuyer">
+<div class="contbuttons" *ngIf="!isBuyer">
+</div>
+<div class="contbuttons" *ngIf="true || isBuyer">
+    <div>
       <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'lista'}"
         (click)="openLista()">Mi Pedido</button>
     </div>
-    <div *ngIf="isBuyer">
+    <div>
       <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'carta'}"
         (click)="openCarta()">Carta</button>
     </div>
     <div>
       <button type="button" class="btn btn-outline-danger btn-sm" (click)="showMozoModal()">Mozo</button>
     </div>
-  </div>
+</div>
 
-<app-cartilla-menu [hidden]="selectedTab != 'carta'" [isBuyer]="isBuyer"></app-cartilla-menu>
+<app-cartilla-menu [hidden]="selectedTab != 'carta'" [isBuyer]="true || isBuyer"></app-cartilla-menu>
 <app-cartilla-carrito [hidden]="selectedTab != 'lista'"></app-cartilla-carrito>

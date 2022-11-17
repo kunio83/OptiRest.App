@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
   { path: "openmesa", component: OpenMesaComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
   { path: "cartilla", component: CartillaComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
+  { path: "cartilla/:selectedTab", component: CartillaComponent, canActivate: [CanActivateViaAuthGuardService] },
 ];
 
 @NgModule({
