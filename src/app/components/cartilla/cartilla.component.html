@@ -4,15 +4,15 @@
 </div>
 <div class="contbuttons" *ngIf="true || isBuyer">
     <div>
-      <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'lista'}"
+      <button type="button" class="btn btn-outline-danger btn-sm top-buttons" [ngClass]="{'btn-selected': selectedTab == 'lista'}"
         (click)="openLista()">Mi Pedido</button>
     </div>
     <div>
-      <button type="button" class="btn btn-outline-danger btn-sm" [ngClass]="{'btn-selected': selectedTab == 'carta'}"
+      <button type="button" class="btn btn-outline-danger btn-sm top-buttons" [ngClass]="{'btn-selected': selectedTab == 'carta'}"
         (click)="openCarta()">Carta</button>
     </div>
     <div>
-      <button type="button" class="btn btn-outline-danger btn-sm" (click)="showMozoModal()">Mozo</button>
+      <button type="button" class="btn btn-outline-danger btn-sm top-buttons" (click)="showMozoModal()">Mozo</button>
     </div>
 </div>
 
