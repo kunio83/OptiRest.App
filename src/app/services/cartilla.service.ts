@@ -74,7 +74,10 @@ export class CartillaService {
 
   refreshOrderedItems(tableServciceid: number): void {
     this.httpClient.get<TableService2Item[]>(environment.urlApiBase + 'TableService2Item/byTableService?tableServiceId=' + tableServciceid).subscribe((itemsOrdered) => {
-      this.itemsOrderedBehaviorSubject.next(itemsOrdered);
+
+      if(localStorage.getItem('currentTableService') != null && localStorage.getItem('currentTableService') != '' ){
+        this.itemsOrderedBehaviorSubject.next(itemsOrdered);
+      }
     });
   }
 
