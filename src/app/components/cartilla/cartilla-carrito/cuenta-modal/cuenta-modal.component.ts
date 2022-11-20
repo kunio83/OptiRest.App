@@ -61,6 +61,7 @@ export class CuentaModalComponent implements OnInit {
 
       }, 2000);
 
+      localStorage.removeItem('currentTableService');
     });
   }
 
