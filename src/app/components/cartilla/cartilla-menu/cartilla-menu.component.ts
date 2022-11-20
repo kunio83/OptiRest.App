@@ -3,6 +3,7 @@ import { Item } from 'src/app/models/item';
 import { ItemCategory } from 'src/app/models/item-category';
 import { Table } from 'src/app/models/table';
 import { CartillaService } from 'src/app/services/cartilla.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-cartilla-menu',
@@ -17,7 +18,8 @@ export class CartillaMenuComponent implements OnInit {
   @Output() itemsToOrder: Item[] = [];
 
   constructor(
-    private cartillaService: CartillaService
+    private cartillaService: CartillaService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {

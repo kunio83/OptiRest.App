@@ -32,7 +32,7 @@ export class CartillaComponent implements OnInit {
     this.cartillaService.setCurrentTab = this.route.snapshot.paramMap.get("selectedTab") ?? 'carta';
 
     this.loginService.isUserLogged.subscribe((isUserLogged: boolean) => {
-      this.isBuyer = isUserLogged;
+      this.isBuyer = isUserLogged && (localStorage.getItem('currentTableService')==null? false : true);
 
       if (localStorage.getItem('currentMesa')) {
         let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
