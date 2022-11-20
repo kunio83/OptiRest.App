@@ -1,4 +1,4 @@
-<div data-qa="product-category-list" class="sc-d3d292bd-0 menucat">
+<div data-qa="product-category-list" class="sc-d3d292bd-0 menucat" [style.top] = "isBuyer? 50: 0">
   <div class="sc-d3d292bd-1 guXzfb" *ngFor="let category of itemCategories" (click)="filterByCategory($event)">
     <a class="sc-d3d292bd-2 xcYKY">
       <span color="graya100" data-testid="typography" class="sc-bxivhb fyzoZN">{{category?.name}}</span>

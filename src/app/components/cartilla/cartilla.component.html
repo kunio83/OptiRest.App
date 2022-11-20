@@ -4,7 +4,7 @@
 <div class="contbuttons" *ngIf="!isBuyer">
 </div>
 -->
-<div class="contbuttons" *ngIf="true || isBuyer">
+<div class="contbuttons" *ngIf="isBuyer">
     <div>
       <button type="button" class="btn btn-outline-danger btn-sm top-buttons" [ngClass]="{'btn-selected': selectedTab == 'lista'}"
         (click)="openLista()">Mi Pedido</button>
@@ -18,5 +18,5 @@
     </div>
 </div>
 
-<app-cartilla-menu [hidden]="selectedTab != 'carta'" [isBuyer]="true || isBuyer"></app-cartilla-menu>
+<app-cartilla-menu [hidden]="selectedTab != 'carta'" [isBuyer]="isBuyer"></app-cartilla-menu>
 <app-cartilla-carrito [hidden]="selectedTab != 'lista'"></app-cartilla-carrito>
