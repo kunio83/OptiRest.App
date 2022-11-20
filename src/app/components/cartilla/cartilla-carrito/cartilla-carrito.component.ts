@@ -38,11 +38,13 @@ export class CartillaCarritoComponent implements OnInit {
   }
 
   updateOrderedItems(){
-    let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+    if (localStorage.getItem('currentTableService')) {
+      let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
-    this.cartillaService.getOrderedItems(currentTableService.id).subscribe(response => {
-      this.itemsOredered = response;
-    });
+      this.cartillaService.getOrderedItems(currentTableService.id).subscribe(response => {
+        this.itemsOredered = response;
+      });
+    }
   }
 
   removeItemFromOrder(item: ItemToOrder): void {

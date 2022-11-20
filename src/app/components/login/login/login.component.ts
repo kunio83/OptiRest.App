@@ -43,14 +43,17 @@ export class LoginComponent {
           if (user.passwordHash == userInput.password)
           {
             this.loginService.setUserLogged(true);
+            localStorage.setItem('currentUser', JSON.stringify(user));
 
             //verifico si tiene un servicio abierto
 
+
+
             if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
+              let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+
               this.router.navigateByUrl('/cartilla/lista');
             } else {
-
-              localStorage.setItem('currentUser', JSON.stringify(user));
               this.router.navigateByUrl('/qrreading');
             }
           }
