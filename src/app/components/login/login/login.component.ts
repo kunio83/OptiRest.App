@@ -45,9 +45,8 @@ export class LoginComponent {
             this.loginService.setUserLogged(true);
 
             //verifico si tiene un servicio abierto
-            if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
-              let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
+            if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
               this.router.navigateByUrl('/cartilla/lista');
             } else {
 

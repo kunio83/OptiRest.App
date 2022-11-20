@@ -53,6 +53,8 @@ export class CartillaMozoModal implements OnInit{
     ${this.pedidoMozoForm.value['textarea-custom'] ? '* Personalizado: ' + this.pedidoMozoForm.value['textarea-custom'] : ''}`;
     this.signalrService.sendNotificationByAppName(message, 'optirest-admin');
     this.signalrService.sendNotificationByAppName(message, 'optirest-mozo');
+
+    // aca tengo que cambiar el estado de TableService en "pedido de mozo"
   }
 
   onSubmit(): void {

@@ -49,6 +49,7 @@ export class CuentaModalComponent implements OnInit {
     currentTableService.paymentMethod = 'mercadopago';
     currentTableService.paymentReference = '-';
     currentTableService.comment= '-';
+    currentTableService.serviceStateId = 4;
 
     this.cartillaService.updateTableService(currentTableService).subscribe(response => {
 
@@ -61,14 +62,15 @@ export class CuentaModalComponent implements OnInit {
       }, 2000);
 
     });
-
-
   }
 
   payCash(): void {
     this.signalrService.sendNotificationByAppName('La mesa 3 requiere pagar en Efectivo', 'optirest-admin');
     this.signalrService.sendNotificationByAppName('La mesa 3 requiere pagar en Efectivo', 'optirest-mozo');
     this.toastr.success('Cuenta efectuada!, se dará aviso al mozo.');
+
+    // aca tengo que cambiar el estado de TableService en "pedido de pago"
+
     this.activeModal.close();
   }
 

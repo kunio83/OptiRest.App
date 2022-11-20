@@ -23,7 +23,7 @@
     <button class="btn btn-secondary btn-block" (click)="skipScan()">
       Saltear
     </button>
-    <button class="btn btn-secondary btn-block" (click)="goToMenu()">
+    <button class="btn btn-secondary btn-block" (click)="goToMenu()" *ngIf="showVerMenu">
       Ver Menú
     </button>
   </div>

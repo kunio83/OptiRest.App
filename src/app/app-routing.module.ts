@@ -10,7 +10,7 @@ import { CanActivateViaAuthGuardService } from './services/can-activate-via-guar
 const routes: Routes = [
   { path: "", component: LoginComponent, pathMatch: "full" },
   { path: "qrreading", component: QRReadingComponent, pathMatch: "full" },
-  { path: "register", component: RegisterComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
+  { path: "register", component: RegisterComponent, pathMatch: "full" },
   { path: "openmesa", component: OpenMesaComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
   { path: "cartilla", component: CartillaComponent, pathMatch: "full",  canActivate: [CanActivateViaAuthGuardService] },
   { path: "cartilla/:selectedTab", component: CartillaComponent, canActivate: [CanActivateViaAuthGuardService] },

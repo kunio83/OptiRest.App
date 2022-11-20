@@ -14,6 +14,8 @@ import { ToastrService } from "ngx-toastr";
 })
 export class QRReadingComponent implements OnInit {
   allowedFormats = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.DATA_MATRIX];
+  showVerMenu: boolean = false;
+
   constructor(
     private userService: UsersService,
     public router: Router,
@@ -38,10 +40,12 @@ export class QRReadingComponent implements OnInit {
             throw new Error("No se encontró la mesa");
           }
 
+          localStorage.setItem('currentMesa', JSON.stringify(data));
+
           let isMesaValid = this.isMesaValid(data);
+          this.showVerMenu = true;
 
           if (isMesaValid) {
-            localStorage.setItem('currentMesa', JSON.stringify(data));
             this.router.navigateByUrl('/openmesa');
           }
       },
@@ -53,11 +57,13 @@ export class QRReadingComponent implements OnInit {
 
   isMesaValid(mesa: Table): boolean {
     if (mesa.stateId == 2) {
-      this.toastr.error("La mesa ya está ocupada");
+      this.toastr.error("La mesa ya está ocupada","Mesa ocupada", {timeOut: 4000 });
+
       return false;
     }
     else if (mesa.stateId == 3) {
       this.toastr.error("La mesa está en mantenimiento");
+
       return false;
     }
 
