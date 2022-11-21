@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { NgbActiveModal, } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Table } from 'src/app/models/table';
+import { TableService } from 'src/app/models/table-service';
+import { MesaService } from 'src/app/services/mesa.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 
 
@@ -18,7 +20,8 @@ export class CartillaMozoModal implements OnInit{
     public activeModal: NgbActiveModal,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private signalrService: SignalrService
+    private signalrService: SignalrService,
+    private mesaService: MesaService
     ) {}
 
     ngOnInit(): void {
@@ -39,7 +42,7 @@ export class CartillaMozoModal implements OnInit{
   enviarPedido: () => void = () => {
     this.toastr.success('Pedido enviado!');
     this.activeModal.close();
-
+    let currentUpdateTableService: TableService;
     let mesaData: Table = JSON.parse(localStorage.getItem('currentMesa') ?? '');
     // aca tengo que obtener mesaData de localstorage,con el mozoId obtener el clientId de la app y enviarlo por guid
 
@@ -55,6 +58,16 @@ export class CartillaMozoModal implements OnInit{
     this.signalrService.sendNotificationByAppName(message, 'optirest-mozo');
 
     // aca tengo que cambiar el estado de TableService en "pedido de mozo"
+    let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+    this.mesaService.getTableService(currentTableService.id).subscribe((data)=>{
+      data.serviceStateId = 2;
+
+      this.mesaService.updateTableService(data).subscribe((data)=>{
+        console.log('data-->', data);
+      }, (error)=>{
+        console.log('error->', error);
+      });
+    });
   }
 
   onSubmit(): void {

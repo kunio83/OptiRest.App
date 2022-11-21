@@ -6,6 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/services/login.service';
 import { SignalrService } from 'src/app/services/signalr.service';
+import { MesaService } from 'src/app/services/mesa.service';
 
 @Component({
   selector: 'app-cuenta-modal',
@@ -27,7 +28,8 @@ export class CuentaModalComponent implements OnInit {
     private signalrService: SignalrService,
     private router: Router,
     private loginService: LoginService,
-    private cartillaService: CartillaService
+    private cartillaService: CartillaService,
+    private mesaService: MesaService
     ) {}
 
     ngOnInit(): void {
@@ -71,6 +73,14 @@ export class CuentaModalComponent implements OnInit {
     this.toastr.success('Cuenta efectuada!, se dará aviso al mozo.');
 
     // aca tengo que cambiar el estado de TableService en "pedido de pago"
+    let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+    this.mesaService.getTableService(currentTableService.id).subscribe((data)=>{
+      data.serviceStateId = 3;
+
+      this.mesaService.updateTableService(data).subscribe((data)=>{
+        console.log(data);
+      });
+    });
 
     this.activeModal.close();
   }

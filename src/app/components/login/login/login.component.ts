@@ -52,7 +52,12 @@ export class LoginComponent {
             if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
               let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
-              this.router.navigateByUrl('/cartilla/lista');
+              if (currentTableService.items.length > 0) {
+                this.router.navigateByUrl('/cartilla/lista');
+              } else{
+                this.router.navigateByUrl('/cartilla');
+              }
+
             } else {
               this.router.navigateByUrl('/qrreading');
             }

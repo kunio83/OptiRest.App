@@ -22,6 +22,16 @@ export class MesaService {
     return result;
   }
 
+  updateTableService(tableService: TableService): Observable<TableService> {
+    return this.http.put<TableService>(environment.urlApiBase + 'tableservice/', tableService);
+  }
+
+  getTableService(tableServiceId: number): Observable<TableService> {
+    let result = this.http.get<TableService>(environment.urlApiBase + 'tableservice/' + tableServiceId);
+
+    return result;
+  }
+
   openMesa(tableService: TableService): Observable<TableService> {
     let result = this.http.post<TableService>(environment.urlApiBase + 'tableservice', tableService);
 

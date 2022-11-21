@@ -41,6 +41,7 @@ export class CartillaCarritoComponent implements OnInit {
     if (localStorage.getItem('currentTableService')) {
       let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
+      this.cartillaService.refreshOrderedItems(currentTableService.id);
       this.cartillaService.getOrderedItems(currentTableService.id).subscribe(response => {
         this.itemsOredered = response;
       });
