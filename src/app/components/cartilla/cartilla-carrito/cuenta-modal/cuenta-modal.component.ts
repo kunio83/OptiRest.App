@@ -93,7 +93,7 @@ export class CuentaModalComponent implements OnInit {
 
     this.toastr.success('Gracias por utilizar OptiRest','Gracias', {timeOut: 4000} )
 
-    localStorage.removeItem('currentUser');
+    //localStorage.removeItem('currentUser');
 
     this.router.navigateByUrl('/qrreading');
   }

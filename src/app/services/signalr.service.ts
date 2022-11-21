@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +21,8 @@ export class SignalrService {
 
   constructor(
     private toastr: ToastrService,
-    private cartillaService: CartillaService
+    private cartillaService: CartillaService,
+    private router: Router
   ) { }
 
   startConnection = () => {
@@ -79,9 +81,16 @@ export class SignalrService {
         let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
         this.cartillaService.refreshOrderedItems(currentTableService.id);
-      } else {
-        this.toastr.success(message);
       }
+
+      if (message.includes('closeorder')) {
+        //localStorage.removeItem('currentUser');
+
+        this.router.navigateByUrl('/qrreading');
+      }
+
+      this.toastr.success(message);
+
 
     });
   }
