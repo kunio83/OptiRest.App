@@ -1,3 +1,4 @@
+import { MesaService } from 'src/app/services/mesa.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 import { CuentaModalComponent } from './cuenta-modal/cuenta-modal.component';
 import { Component, Input, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { OrderDetail } from 'src/app/models/order-detail';
 import { TableService } from 'src/app/models/table-service';
 import { TableService2Item } from 'src/app/models/table-service2-items';
 import { CartillaService } from 'src/app/services/cartilla.service';
+import { Item } from 'src/app/models/item';
 
 @Component({
   selector: 'app-cartilla-carrito',
@@ -25,7 +27,8 @@ export class CartillaCarritoComponent implements OnInit {
     private cartillaService: CartillaService,
     private toastr: ToastrService,
     private modalService: NgbModal,
-    private signalrService: SignalrService
+    private signalrService: SignalrService,
+    private mesaService: MesaService
     ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,23 @@ export class CartillaCarritoComponent implements OnInit {
 
   removeItemFromOrder(item: ItemToOrder): void {
     this.cartillaService.removeItemFromOrder(item);
+  }
+
+  removeItemOrdered(item: ItemToOrder): void{
+    let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
+
+    this.mesaService.getTableService(currentTableService.id).subscribe((data)=>{
+        let itemToDelete: Item = data.items.find(i => i.id == item.item.id) ?? new Item;
+        let index = data.items.indexOf(itemToDelete);
+        data.items.splice(index,1);
+
+        this.mesaService.deleteTableService2Item(currentTableService.id, itemToDelete.id).subscribe((result)=>{
+          console.log(result);
+          localStorage.setItem('currentTableService', JSON.stringify(data));
+          this.itemsOredered.splice(index, 1);
+        });
+    });
+
   }
 
   updateTotalPrice(): void {

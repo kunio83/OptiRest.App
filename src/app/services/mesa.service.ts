@@ -37,4 +37,8 @@ export class MesaService {
 
     return result;
   }
+
+  deleteTableService2Item(tableServiceId: number, itemId: number): Observable<number> {
+    return this.http.delete<number>(environment.urlApiBase + 'TableService2Item/byTableServiceIdAndItemId?tableServiceId=' + tableServiceId + '&itemId=' + itemId);
+  }
 }

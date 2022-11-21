@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/services/login.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 import { MesaService } from 'src/app/services/mesa.service';
+import { option } from 'ngx-bootstrap-icons';
 
 @Component({
   selector: 'app-cuenta-modal',
@@ -78,6 +79,7 @@ export class CuentaModalComponent implements OnInit {
       data.serviceStateId = 3;
 
       this.mesaService.updateTableService(data).subscribe((data)=>{
+        localStorage.setItem('currentTableService', JSON.stringify(data));
         console.log(data);
       });
     });
@@ -89,6 +91,10 @@ export class CuentaModalComponent implements OnInit {
     this.showMPModal = false;
     this.activeModal.close();
 
-    this.loginService.logOut();
+    this.toastr.success('Gracias por utilizar OptiRest','Gracias', {timeOut: 4000} )
+
+    localStorage.removeItem('currentUser');
+
+    this.router.navigateByUrl('/qrreading');
   }
 }

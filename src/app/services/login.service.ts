@@ -20,8 +20,6 @@ export class LoginService {
 
   logOut() : void {
     this.behaviorSubject.next(false);
-    //localStorage.clear();
-    //localStorage.removeItem('currentMesa');
     localStorage.removeItem('currentUser');
 
     this.router.navigateByUrl('/');

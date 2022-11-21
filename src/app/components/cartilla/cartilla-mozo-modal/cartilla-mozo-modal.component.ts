@@ -63,6 +63,7 @@ export class CartillaMozoModal implements OnInit{
       data.serviceStateId = 2;
 
       this.mesaService.updateTableService(data).subscribe((data)=>{
+        localStorage.setItem('currentTableService', JSON.stringify(data));
         console.log('data-->', data);
       }, (error)=>{
         console.log('error->', error);

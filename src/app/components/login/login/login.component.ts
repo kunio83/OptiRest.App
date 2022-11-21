@@ -46,9 +46,6 @@ export class LoginComponent {
             localStorage.setItem('currentUser', JSON.stringify(user));
 
             //verifico si tiene un servicio abierto
-
-
-
             if (localStorage.getItem('currentTableService') != null && localStorage.getItem('currentUser') != null) {
               let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
