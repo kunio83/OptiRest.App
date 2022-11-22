@@ -60,6 +60,7 @@ export class OpenMesaComponent implements OnInit {
     tableService.dinerUserId = currentUser.id;
     tableService.diners = this.inputComensales;
     tableService.items = [];
+
     tableService.serviceStart = new Date();
 
 

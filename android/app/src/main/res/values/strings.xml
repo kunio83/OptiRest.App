@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">optirest-app</string>
+    <string name="title_activity_main">optirest-app</string>
+    <string name="package_name">com.optirestapp.app</string>
+    <string name="custom_url_scheme">com.optirestapp.app</string>
+</resources>
