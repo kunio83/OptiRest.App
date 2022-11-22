@@ -10,7 +10,7 @@
       <div class="contqr">
         <div class="qr-reader">
           <div style="overflow: hidden; width:80vw; height:80vw; z-index:1; background-color:  rgb(37, 37, 37);">
-            <zxing-scanner [formats]="allowedFormats" (scanSuccess)="onScanSuccess($event)" previewFitMode="cover">
+            <zxing-scanner [formats]="allowedFormats" (scanSuccess)="onScanSuccess($event)" previewFitMode="cover" [timeBetweenScans]="1000">
             </zxing-scanner>
           </div>
         </div>
