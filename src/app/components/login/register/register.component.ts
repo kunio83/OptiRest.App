@@ -41,4 +41,7 @@ export class RegisterComponent {
       this.toastr.error('Las contraseñas deben ser iguales!');
     }
   }
+  volver() {
+    this.router.navigateByUrl('/');
+  }
 }

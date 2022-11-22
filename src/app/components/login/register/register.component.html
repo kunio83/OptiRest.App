@@ -7,13 +7,13 @@
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 
-                <div class="text-center">
-                  <img src="../../../assets/logo optimum.jpg" style="width: 185px;" alt="logo">
-                  <h4 class="mt-1 mb-5 pb-1">Comer sin complicaciones</h4>
+                <div class="contlogo">
+                  <img src="../../../assets/log400.png" style="width: 185px;" alt="logo">
+                  <h4 class="mt-1 py-4">Bienvenidos a la experiencia OptiRest</h4>
                 </div>
 
                 <form>
-                  <p>Registro</p>
+                  
 
                   <!-- <div class="form-outline mb-4">
                     <input
@@ -28,7 +28,7 @@
                     <label class="form-label" for="userName-input">Nombre de Usuario</label>
                   </div> -->
 
-                  <div class="form-outline mb-4">
+                  <div class="form-outline my-4">
                     <input
                     type="nombres"
                     id="nombres-input"
@@ -111,7 +111,13 @@
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button
-                      class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                      class="btn btn-secondary btn-block fa-lg m-3 btn-google "
+                      (click)="volver()"
+                    >
+                    Volver
+                    </button>
+                    <button
+                      class="btn btn-primary btn-block fa-lg gradient-custom-2 m-3"
                       type="submit"
                       (click)="register()"
                     >
@@ -121,11 +127,6 @@
                 </form>
 
               </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-
-              <app-front-page></app-front-page>
-
             </div>
           </div>
         </div>
