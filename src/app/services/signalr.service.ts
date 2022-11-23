@@ -36,14 +36,6 @@ export class SignalrService {
     this.hubConnection
       .start()
       .then(() => {
-        if (localStorage.getItem('appGuid') != null) {
-          this.appGuid = localStorage.getItem('appGuid') ?? '';
-        }
-        else {
-          this.appGuid = uuidv4();
-          localStorage.setItem('appGuid', this.appGuid);
-        }
-
         this.updateAppsConnected();
       })
       .catch(err => console.log('Error while starting connection: ' + err));
@@ -52,7 +44,7 @@ export class SignalrService {
   updateAppsConnected = () => {
     let currentUser = JSON.parse(localStorage.getItem('currentUser') ?? '');
 
-      this.hubConnection.invoke('SetConnectionId', this.appGuid, this.appName, currentUser.id.toString()).then(() => {
+      this.hubConnection.invoke('SetConnectionId', this.appName).then(() => {
         this.hubConnection.invoke('GetAppIds').then((appIds: AppData[]) => {
           console.log('appIds:-->', appIds);
           this.appsConnectedBehaviorSubject.next(appIds);
@@ -61,18 +53,18 @@ export class SignalrService {
   };
 
   sendNotificationByAppName = (message: string, appName: string) => {
-    let connectionIds: string[] = this.appsConnectedBehaviorSubject.getValue().map(a => a.notificationAppData).filter(a => a.appName == appName).map(e => e.connectionId);
+    // let connectionIds: string[] = this.appsConnectedBehaviorSubject.getValue().map(a => a.notificationAppData).filter(a => a.appName == appName).map(e => e.connectionId);
 
-    this.hubConnection.invoke('sendMessage', message, connectionIds)
+    this.hubConnection.invoke('sendMessageByAppName', message, appName)
       .catch(err => console.error(err));
   }
 
-  sendNotificationByAppGuid = (message: string, appGuid: string) => {
-    let connectionId: string = this.appsConnectedBehaviorSubject.getValue().find(q => q.appGuid == appGuid)?.notificationAppData.connectionId ?? '';
+  // sendNotificationByAppGuid = (message: string, appGuid: string) => {
+  //   let connectionId: string = this.appsConnectedBehaviorSubject.getValue().find(q => q.appGuid == appGuid)?.notificationAppData.connectionId ?? '';
 
-    this.hubConnection.invoke('sendMessage', message, [connectionId])
-      .catch(err => console.error(err));
-  }
+  //   this.hubConnection.invoke('sendMessage', message, [connectionId])
+  //     .catch(err => console.error(err));
+  // }
 
   startReceiveMessage = () => {
     this.hubConnection.on('receiveMessage', (message) => {
@@ -81,9 +73,7 @@ export class SignalrService {
         let currentTableService: TableService = JSON.parse(localStorage.getItem('currentTableService') ?? '');
 
         this.cartillaService.refreshOrderedItems(currentTableService.id);
-      }
-
-      if (message.includes('closeorder')) {
+      } else if (message.includes('closeorder')) {
         //localStorage.removeItem('currentUser');
 
         this.router.navigateByUrl('/qrreading');
