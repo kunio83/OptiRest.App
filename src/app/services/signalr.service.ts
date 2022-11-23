@@ -87,10 +87,10 @@ export class SignalrService {
         //localStorage.removeItem('currentUser');
 
         this.router.navigateByUrl('/qrreading');
+      } else {
+
+        this.toastr.success(message);
       }
-
-      this.toastr.success(message);
-
 
     });
   }

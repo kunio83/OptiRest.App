@@ -98,6 +98,7 @@ export class CartillaCarritoComponent implements OnInit {
         this.cartillaService.refreshOrderedItems(currentTableService.id);
         this.updateOrderedItems();
         this.signalrService.sendNotificationByAppName('refreshorder','optirest-admin');
+        this.signalrService.sendNotificationByAppName('refreshorder','optirest-cocina');
       }
     }, error => {
       this.toastr.error(error.error, 'Error al realizar el pedido');
